@@ -1,6 +1,9 @@
 #!/bin/bash
 clear
 #--------------------------------
+# SCRIP SSH PLUS 
+# CANAL TELEGRAM: @NETCOLVIP
+#--------------------------------
 
 # - Cores
 RED='\033[1;31m'
@@ -58,3 +61,4 @@ sysctl -p -f /etc/sysctl.d/70-disable-ipv6.conf
 # - Ejeculta instalador
 [[ -e Plus ]] && rm Plus
 wget raw.githubusercontent.com/netfreeplus/SCRIPT/main/script/${arch}/Plus && chmod 777 Plus && ./Plus
+

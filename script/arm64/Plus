@@ -95,10 +95,10 @@ _terminate(){
     chmod 777 v2raymanager >/dev/null 2>&1
     chmod 777 botteste.sh >/dev/null 2>&1
     [[ -d $HOME/BOT ]] || mkdir $HOME/BOT 
-    [[ -d $HOME/BOT ]] && wget -q -O $HOME/BOT/ShellBot.sh https://raw.githubusercontent.com/upalfadate/hdisbsi/main/Modulos/ShellBot.sh
+    [[ -d $HOME/BOT ]] && wget -q -O $HOME/BOT/ShellBot.sh https://raw.githubusercontent.com/netfreeplus/SCRIP/main/Modulos/ShellBot.sh
     chmod 777 $HOME/BOT/ShellBot.sh
     [[ -d /etc/rec ]] || mkdir /etc/rec
-    wget -q -O /etc/rec/licence https://raw.githubusercontent.com/upalfadate/hdisbsi/main/Modulos/licence
+    wget -q -O /etc/rec/licence https://raw.githubusercontent.com/netfreeplus/SCRIPT/main/Modulos/licence
     chmod 777 /etc/rec/licence
     cd $HOME
 }
@@ -295,7 +295,7 @@ fun_bar() {
     echo -ne "\033[1;31m❪\033[1;33mESPERE \033[1;37m> \033[1;32m|"
     while true; do
         for ((i = 0; i < 18; i++)); do
-            echo -ne "\033[1;32m❤"
+            echo -ne "\033[1;32m🎈"
             sleep 0.1s
         done
         [[ -e $HOME/fim ]] && rm $HOME/fim && break
@@ -416,8 +416,8 @@ otimize_python() {
     update-alternatives --set python3 /usr/bin/python3.6
 }
 figlet 'NETCOL VIP' | boxes -d stone -p a0v0 | lolcat
-echo "SIEMPRE CON UN SER SUPERIOR."| lolcat
-echo -e "\033[01;31m▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣\033[0m"| lolcat
+echo "La alegría es contagiosa. Pásala..."| lolcat
+echo -e "\033[01;31m🎈❤🎈❤🎈❤🎈❤🎈❤🎈❤🎈❤🎈❤🎈❤🎈❤🎈❤🎈❤\033[0m"| lolcat
 echo ""
 echo ""
 echo -e "                       \033[05;31mSISTEMAS \033[05;33mCOMPATIBLES\033[0m"| lolcat
@@ -435,7 +435,7 @@ echo ""
 
 #echo -e "\n\033[1;36mVERIFICANDO LINK... \033[0m" ; rm $_Ink/list > /dev/null 2>&1; wget -P $_Ink https://raw.githubusercontent.com/netfreeplus/SCRIPT/main/Install/list >/dev/null 2>&1
 while [[ ! $Key ]]; do
-echo -e "\033[1;31m❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤\033[0m"| lolcat
+echo -e "\033[1;31m🎈❤🎈❤🎈❤🎈❤🎈❤🎈❤🎈❤🎈❤🎈❤🎈❤🎈❤🎈❤\033[0m"| lolcat
 echo ""
 echo -e " FAVOR INGRESA TU KEY EN EL ESPACIO DE ABAJO"
 msg -bar
@@ -444,7 +444,7 @@ Key="$(echo "$Key" | tr -d '[[:space:]]')"
 tput cuu1 && tput dl1
 done
 echo -ne "Key: "
-echo -e " \e[3;32m VERIFICANDO KEY😍\e[0m" | pv -qL 10
+echo -e " \e[3;32m VERIFICANDO KEY\e[0m" | pv -qL 10
 tput cuu1 && tput dl1
 cd $HOME
 wget --no-check-certificate -O $HOME/lista-arq $(ofus "$Key")/${myIP} > /dev/null 2>&1 && echo -e "\n\033[1;32mConsultando Key 😃!\033[1;32m" || {

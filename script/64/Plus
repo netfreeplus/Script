@@ -95,12 +95,12 @@ _terminate(){
     chmod 777 v2raymanager >/dev/null 2>&1
     chmod 777 botteste.sh >/dev/null 2>&1
     [[ -d $HOME/BOT ]] || mkdir $HOME/BOT 
-    [[ -d $HOME/BOT ]] && wget -q -O $HOME/BOT/ShellBot.sh https://raw.githubusercontent.com/netfreeplus/SCRIP/main/Modulos/ShellBot.sh
+    [[ -d $HOME/BOT ]] && wget -q -O $HOME/BOT/ShellBot.sh https://raw.githubusercontent.com/upalfadate/hdisbsi/main/Modulos/ShellBot.sh
     chmod 777 $HOME/BOT/ShellBot.sh
     [[ -d /etc/rec ]] || mkdir /etc/rec
-    wget -q -O /etc/rec/licence https://raw.githubusercontent.com/netfreeplus/SCRIPT/main/Modulos/licence
+    wget -q -O /etc/rec/licence https://raw.githubusercontent.com/upalfadate/hdisbsi/main/Modulos/licence
     chmod 777 /etc/rec/licence
-    cd $HOME
+	cd $HOME
 }
 
 _rutas(){
@@ -137,33 +137,33 @@ _host[4]="navegue.vivo.com.br/pre/"
 _host[5]="www.whatsapp.net"
 _host[6]="/SSHPLUS?"
 for host in ${_host[@]}; do
-    if [[ "$(grep -w "$host" $_arq_host | wc -l)" = "0" ]]; then
-        sed -i "3i\127.0.0.1 $host" $_arq_host
-    fi
+	if [[ "$(grep -w "$host" $_arq_host | wc -l)" = "0" ]]; then
+		sed -i "3i\127.0.0.1 $host" $_arq_host
+	fi
 done
 [[ ! -e /etc/autostart ]] && {
-    echo '#!/bin/bash
+	echo '#!/bin/bash
 clear
 #INICIO AUTOMATICO' >/etc/autostart
-    chmod +x /etc/autostart
+	chmod +x /etc/autostart
 } || {
-    [[ $(ps x | grep "bot_plus" | grep -v grep | wc -l) != '0' ]] && wget -qO- https://raw.githubusercontent.com/netfreeplus/SCRIPT/main/Modulos/ShellBot.sh
-    for proc in $(ps x | grep 'dmS' | grep -v 'grep' | awk {'print $1'}); do
-        screen -r -S "$proc" -X quit    
+	[[ $(ps x | grep "bot_plus" | grep -v grep | wc -l) != '0' ]] && wget -qO- https://raw.githubusercontent.com/netfreeplus/SCRIPT/main/Modulos/ShellBot.sh
+	for proc in $(ps x | grep 'dmS' | grep -v 'grep' | awk {'print $1'}); do
+		screen -r -S "$proc" -X quit	
 done
-    screen -wipe >/dev/null
-    echo '#!/bin/bash
+	screen -wipe >/dev/null
+	echo '#!/bin/bash
 clear
 #INICIO AUTOMATICO' >/etc/autostart
-    chmod +x /etc/autostart
+	chmod +x /etc/autostart
 }
 crontab -r >/dev/null 2>&1
 (
-    crontab -l 2>/dev/null
-    echo "@daily /bin/verifatt"
-    echo "@reboot /etc/autostart"
-    echo "* * * * * /etc/autostart"
-    echo "0 */6 * * * /bin/uexpired"
+	crontab -l 2>/dev/null
+	echo "@daily /bin/verifatt"
+	echo "@reboot /etc/autostart"
+	echo "* * * * * /etc/autostart"
+	echo "0 */6 * * * /bin/uexpired"
 ) | crontab -
 echo "$_lvk" | sed -n '1 p' | cut -d' ' -f2 >/bin/versao && cat /bin/versao >/home/sshplus
 wget https://github.com/netfreeplus/SCRIPT/raw/main/Install/jq-linux64 >/dev/null 2>&1
@@ -255,7 +255,7 @@ install_fim () {
     echo ""
     echo -e "      \033[1;33mINSTALANDO FUNCIONES Y DEFINICIONES! \033[0m"
     echo ""
-    [[ $1 = '--up' ]] && _rutas
+	[[ $1 = '--up' ]] && _rutas
     clear
     echo ""
     cd $HOME
@@ -295,7 +295,7 @@ fun_bar() {
     echo -ne "\033[1;31m❪\033[1;33mESPERE \033[1;37m> \033[1;32m|"
     while true; do
         for ((i = 0; i < 18; i++)); do
-            echo -ne "\033[1;32m🎈"
+            echo -ne "\033[1;32m█"
             sleep 0.1s
         done
         [[ -e $HOME/fim ]] && rm $HOME/fim && break
@@ -363,8 +363,11 @@ exit 1
 
 function verif_key() {
 Key=$1
-krm=$(echo '5:q-3gs2.o7%8:1' | rev) 
+#echo ${Key}
+echo -e "$(ofus $Key)"
+krm=$(echo '5:q-3gs2.o7%8:1' | rev)	
 IiP=$(ofus "$Key" | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}')
+#echo ${IiP}
 echo -e " VAMOS A DESENCADENAR LA KEY FILE " | pv -qL 10
 #sleep 5s
 tput cuu1 && tput dl1
@@ -377,10 +380,12 @@ if [[ -e $HOME/lista-arq ]] && [[ ! $(cat $HOME/lista-arq|grep "KEY INVALIDA!") 
    msg -bar2
    msg -ama  "BIENVENIDO, GRACIAS POR UTILIZAR : \033[1;31m[ SSH-Plus ]"
    REQUEST=$(ofus "$Key"|cut -d'/' -f2)
+   echo ${IiP}
    [[ ! -d ${SCPinstal} ]] && mkdir ${SCPinstal}
    pontos="."
    stopping=" Verificando FILES BASE "
    for arqx in $(cat $HOME/lista-arq); do
+   #echo -e "${SCPinstal}/${arqx} ${IiP}:85/${REQUEST}/${arqx}"
    wget --no-check-certificate -O ${SCPinstal}/${arqx} ${IiP}:85/${REQUEST}/${arqx} > /dev/null 2>&1 && verificar_arq "${arqx}" #|| error_fun
    done
    msg -bar2
@@ -416,8 +421,8 @@ otimize_python() {
     update-alternatives --set python3 /usr/bin/python3.6
 }
 figlet 'NETCOL VIP' | boxes -d stone -p a0v0 | lolcat
-echo "La alegría es contagiosa. Pásala..."| lolcat
-echo -e "\033[01;31m🎈❤🎈❤🎈❤🎈❤🎈❤🎈❤🎈❤🎈❤🎈❤🎈❤🎈❤🎈❤\033[0m"| lolcat
+echo "Siempre con un ser superior."| lolcat
+echo -e "\033[01;31m▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣\033[0m"| lolcat
 echo ""
 echo ""
 echo -e "                       \033[05;31mSISTEMAS \033[05;33mCOMPATIBLES\033[0m"| lolcat
@@ -435,7 +440,7 @@ echo ""
 
 #echo -e "\n\033[1;36mVERIFICANDO LINK... \033[0m" ; rm $_Ink/list > /dev/null 2>&1; wget -P $_Ink https://raw.githubusercontent.com/netfreeplus/SCRIPT/main/Install/list >/dev/null 2>&1
 while [[ ! $Key ]]; do
-echo -e "\033[1;31m🎈❤🎈❤🎈❤🎈❤🎈❤🎈❤🎈❤🎈❤🎈❤🎈❤🎈❤🎈❤\033[0m"| lolcat
+echo -e "\033[1;31m▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣▣\033[0m"| lolcat
 echo ""
 echo -e " FAVOR INGRESA TU KEY EN EL ESPACIO DE ABAJO"
 msg -bar
@@ -447,7 +452,7 @@ echo -ne "Key: "
 echo -e " \e[3;32m VERIFICANDO KEY\e[0m" | pv -qL 10
 tput cuu1 && tput dl1
 cd $HOME
-wget --no-check-certificate -O $HOME/lista-arq $(ofus "$Key")/${myIP} > /dev/null 2>&1 && echo -e "\n\033[1;32mConsultando Key 😃!\033[1;32m" || {
+wget --no-check-certificate -O $HOME/lista-arq $(ofus "$Key")/${myIP} > /dev/null 2>&1 && echo -e "\n\033[1;32mKEY VALIDA 😃!\033[1;32m" || {
    echo -e "\033[1;32m Verified"
    invalid_key
    exit
